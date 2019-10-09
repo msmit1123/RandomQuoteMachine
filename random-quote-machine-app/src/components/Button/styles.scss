@@ -1,0 +1,30 @@
+/*
+* Import CSS Variables
+*/
+@import '../../_variables.scss';
+
+.button{
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 27px;
+    padding: 7px 12px;
+    margin: 10px;
+    text-align: center;
+    display: inline;
+    cursor: pointer;
+    transition: all .3s;
+    color: #fff;
+    width:30px;
+    height:30px;
+    border-radius: 25px;
+    box-shadow: 1px 3px 5px rgba(0,0,0,.5);
+    background: $primary_color;
+    &:hover {
+        background: darken($primary_color, 10%);
+    }
+    &.block {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+}

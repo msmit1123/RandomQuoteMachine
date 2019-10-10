@@ -2,6 +2,8 @@
  * Import Node Dependencies
  */
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 /**
  * Import other dependencies
@@ -63,6 +65,8 @@ class App extends React.Component{
   }
 
   render(){
+    var curView = this.assignViewClass();
+
     return (
       <div className="App">
         {/* Include Grading Script for Free Code Camp */}
@@ -72,18 +76,18 @@ class App extends React.Component{
           view: <button onClick={this.displayAsSite}>website</button> <ToggleSwitch onChange={this.toggleView} checked={this.state.isFooterChecked} /> <button onClick={this.displayAsFooter}>footer</button>
         </header>
 
-        <div id="quote-box" className={this.assignViewClass()}>
-          <div id="text" className={this.assignViewClass()}>
+        <div id="quote-box" className={curView}>
+          <div id="text" className={curView}>
             "You miss 100% of the shots you don't take" -Wayne Gretzky
           </div>
           
-          <div id="author" className={this.assignViewClass()}>
+          <div id="author" className={curView}>
             -Michael Scott
           </div>
 
-          <div id="button-container" className={this.assignViewClass()}>
+          <div id="button-container" className={curView}>
             <Button id="new-quote" onClick={this.newQuote}>New Quote</Button> 
-            <Button onClick={() => console.log("tweeting")}><a href="www.google.com" id="tweet-quote">Tweet</a></Button>
+            <Button onClick={() => document.getElementById("tweet-quote").click()}><a href="https://www.google.com" id="tweet-quote"><FontAwesomeIcon icon={faTwitter} /></a></Button>
           </div>
         </div>
 

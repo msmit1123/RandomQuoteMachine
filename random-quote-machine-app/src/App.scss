@@ -14,7 +14,7 @@
   background-color 1s;
 }
 header{
-  padding: 20px;
+  padding: 10px;
   background-color: rgba(50,50,50,1);
   color:white;
   & button {
@@ -31,9 +31,16 @@ header{
       -webkit-appearance: none;
       -moz-appearance: none;
   }
+  & a{
+    color:white;
+  }
 }
 h1{
   font-size:25px;
+  margin:10px;
+}
+h5{
+  margin:10px;
 }
 
 #quote-box{

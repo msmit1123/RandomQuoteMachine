@@ -113,6 +113,7 @@ class App extends React.Component{
         <header>
           <h1>Random Quote Machine</h1>
           view: <button onClick={this.displayAsSite}>website</button> <ToggleSwitch onChange={this.toggleView} checked={this.state.isFooterChecked} /> <button onClick={this.displayAsFooter}>footer</button>
+          <h5>see source on <a href="https://github.com/msmit1123/RandomQuoteMachine">GitHub</a></h5>
         </header>
 
         <div id="quote-box" className={curView} style={curColorStyle}>

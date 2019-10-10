@@ -59,7 +59,7 @@ h1{
 
 #text{
   &.site{
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 500;
     margin:10px;
   }
@@ -67,12 +67,13 @@ h1{
     text-align: left;
     font-size: 14px;
     margin: 10px;
+    margin-right: 30%;
   }
 }
 
 #author{
   &.site{
-    font-size: 14px;
+    font-size: 16px;
     text-align: right;
     margin: 10px;
     margin-right:30px;

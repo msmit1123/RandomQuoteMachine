@@ -45,8 +45,8 @@ class App extends React.Component{
       isFooterChecked: false,
       quote: "...loading",
       author: "...please wait",
-      color: "red",
-      backgroundColor: "red",
+      color: "#3b5e80",
+      backgroundColor: "#3b5e80",
       opacity: 1
     }
     this.displayAsFooter = this.displayAsFooter.bind(this);
@@ -116,21 +116,22 @@ class App extends React.Component{
           <h5>see source on <a href="https://github.com/msmit1123/RandomQuoteMachine">GitHub</a></h5>
         </header>
 
-        <div id="quote-box" className={curView} style={curColorStyle}>
-          <div id="text" className={curView} style={ {opacity: this.state.opacity} }>
-            "{this.state.quote}"
-          </div>
-          
-          <div id="author" className={curView} style={{ opacity: this.state.opacity }}>
-            -{this.state.author}
-          </div>
+        <div id="pageContent" className={curView}>
+          <div id="quote-box" className={curView} style={curColorStyle}>
+            <div id="text" className={curView} style={ {opacity: this.state.opacity} }>
+              "{this.state.quote}"
+            </div>
+            
+            <div id="author" className={curView} style={{ opacity: this.state.opacity }}>
+              -{this.state.author}
+            </div>
 
-          <div id="button-container" className={curView}>
-            <Button id="new-quote" onClick={this.newQuote} color={this.state.backgroundColor}>New Quote</Button> 
-            <Button onClick={() => document.getElementById("tweet-quote").click()} color={this.state.backgroundColor}><a href={curTweetLink} id="tweet-quote"><FontAwesomeIcon icon={faTwitter} /></a></Button>
+            <div id="button-container" className={curView}>
+              <Button id="new-quote" onClick={this.newQuote} color={this.state.backgroundColor}>New Quote</Button> 
+              <Button onClick={() => document.getElementById("tweet-quote").click()} color={this.state.backgroundColor}><a href={curTweetLink} id="tweet-quote"><FontAwesomeIcon icon={faTwitter} /></a></Button>
+            </div>
           </div>
         </div>
-
       </div>
     );
   }

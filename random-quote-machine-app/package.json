@@ -1,5 +1,6 @@
 {
   "name": "random-quote-machine-app",
+  "homepage": "http://mikiesmit.com/freeCodeCamp/front-end-libraries/random-quote-machine/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

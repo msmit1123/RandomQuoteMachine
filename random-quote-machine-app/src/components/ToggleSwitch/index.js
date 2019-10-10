@@ -16,9 +16,9 @@ class ToggleSwitch extends React.Component{
 
     render(){
         return (
-            <div class="switch-toggle-container">
+            <div className="switch-toggle-container">
                 <input type="checkbox" id="switch1" checked={this.props.checked} onChange={this.handleChange} />
-                <label class="switch-toggle" for="switch1"></label>
+                <label className="switch-toggle" htmlFor="switch1"></label>
             </div>
         )
     }

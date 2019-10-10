@@ -15,7 +15,7 @@ class Button extends React.Component{
 
     render(){
         return (
-            <div className="button" id={this.props.id} onClick={this.handleClick}>
+            <div className="button" id={this.props.id} onClick={this.handleClick} style={ {backgroundColor: this.props.color} }>
                 {this.props.children}
             </div>
         )

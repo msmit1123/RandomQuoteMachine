@@ -21,26 +21,33 @@ import ToggleSwitch from './components/ToggleSwitch';
 //Define quote bank
 var quoteBank = [
   { quote: "All that is gold does not glitter, Not all those who wander are lost, The old that is strong does not wither, Deep roots are not reached by the frost.", author: "JRR Tolkien" },
-  { quote: "'You miss 100% of the shots you don't take - Wayne Gretzky", author: "Michael Scott" },
-  { quote: "Treat every list like it's a list of sandwiches.", author: "Mikie"},
-  { quote: "There are only two professions condemned in the Bible: being satan, and being a tax collector. Frankly, I'm not sure which is worse.", author: "John" },
+  { quote: "'You miss 100 percent of the shots you don't take - Wayne Gretzky", author: "Michael Scott" },
+  { quote: "Treat every list like it's a list of sandwiches.", author: "Mikie Smit"},
   { quote: "Price is what you pay. Value is what you get.", author: "Ancient Proverb" },
-  { quote: "Bacon is the cheese of meats.", author: "John" },
-  { quote: "A ravioli is just an Italian potsticker.", author: "John" },
-  { quote: "Have you ever been in a submarine that lost its ability to surface and you're stuck inside it sinking to the ocean floor as the water pressure slowly crushes the sub around you and you hear the metal creaking and groaning as you approach your certain doom? It's like that.", author: "John" },
-  { quote: "I don't want to be the idiot stuck holding the goose when the chicken man comes to town", author: "Mikie" },
+  { quote: "Bacon is the cheese of meats.", author: "John D'Ortenzio" },
+  { quote: "A ravioli is just an Italian potsticker.", author: "Grandma" },
+  { quote: "Have you ever been in a submarine that lost its ability to surface and you're stuck inside it sinking to the ocean floor as the water pressure slowly crushes the sub around you and you hear the metal creaking and groaning as you approach your certain doom? It's like that.", author: "John D'Ortenzio" },
+  { quote: "Choose your words tastefully, because someday you may have to eat them", author: "Paula" },
   { quote: "It was just as insulting whether you heard it or not", author: "Kevin" },
-  { quote: "The law is a shield, not a sword. Those who attempt to wield it as a sword deserver to be struck by it", author: "Mikie" },
+  { quote: "Do or do not. There is no try", author: "Yoda" },
   { quote: "There is a white haired old man cutting wood in your yard.", author: "Bob" }
 ]
+
+// Define color bank
+var colorBank = ["#001f3f", "#0074D9", "#3b5e80", "#39AAAA", "#3D9970", "green", "FFDC00", "#FF851B", "FF4136", "DDDDDD"];
+
+
 
 class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
       isFooterChecked: false,
-      quote: "",
-      author: "",
+      quote: "...loading",
+      author: "...please wait",
+      color: "red",
+      backgroundColor: "red",
+      opacity: 1
     }
     this.displayAsFooter = this.displayAsFooter.bind(this);
     this.displayAsSite = this.displayAsSite.bind(this);
@@ -57,7 +64,7 @@ class App extends React.Component{
   }
 
   assignViewClass(){
-    return this.state.isFooterChecked ? "footer" : "site"
+    return this.state.isFooterChecked ? "footer" : "site";
   }
 
   toggleView(event){
@@ -65,21 +72,27 @@ class App extends React.Component{
   }
 
   newQuote(){
-    var randIndex = Math.floor(Math.random()*quoteBank.length)
-    this.setState({
-      quote: quoteBank[randIndex].quote,
-      author: quoteBank[randIndex].author
-    })
+    //fadeout text
+    this.setState({opacity: 0});
+    this.pickNewColor();
 
-    this.newColor();
+    //Wait a half second, then pick new quote, assign new color
+    // to text, and fade text back in
+    setTimeout(() => {
+      var randIndex = Math.floor(Math.random()*quoteBank.length)
+      this.setState({
+        quote: quoteBank[randIndex].quote,
+        author: quoteBank[randIndex].author,
+        color: this.state.backgroundColor
+      })
+      this.setState({opacity: 1})
+    },500);
+
   }
 
-  newText(){
-    console.log("new text");
-  }
-
-  newColor(){
-    console.log("new color");
+  pickNewColor(){
+    var randIndex = Math.floor(Math.random() * colorBank.length);
+    this.setState({ backgroundColor: colorBank[randIndex] })
   }
 
   componentDidMount(){
@@ -88,9 +101,13 @@ class App extends React.Component{
 
   render(){
     var curView = this.assignViewClass();
+    
+    var curBackgroundStyle = { backgroundColor: this.state.backgroundColor };
+    var curColorStyle = { color: this.state.color };
+    var curTweetLink = `https://twitter.com/intent/tweet?hastags=quotes&text=${this.state.quote}`
 
     return (
-      <div className="App">
+      <div className="App" style={curBackgroundStyle}>
         {/* Include Grading Script for Free Code Camp */}
       <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
         <header>
@@ -98,18 +115,18 @@ class App extends React.Component{
           view: <button onClick={this.displayAsSite}>website</button> <ToggleSwitch onChange={this.toggleView} checked={this.state.isFooterChecked} /> <button onClick={this.displayAsFooter}>footer</button>
         </header>
 
-        <div id="quote-box" className={curView}>
-          <div id="text" className={curView}>
+        <div id="quote-box" className={curView} style={curColorStyle}>
+          <div id="text" className={curView} style={ {opacity: this.state.opacity} }>
             "{this.state.quote}"
           </div>
           
-          <div id="author" className={curView}>
+          <div id="author" className={curView} style={{ opacity: this.state.opacity }}>
             -{this.state.author}
           </div>
 
           <div id="button-container" className={curView}>
-            <Button id="new-quote" onClick={this.newQuote}>New Quote</Button> 
-            <Button onClick={() => document.getElementById("tweet-quote").click()}><a href="https://www.google.com" id="tweet-quote"><FontAwesomeIcon icon={faTwitter} /></a></Button>
+            <Button id="new-quote" onClick={this.newQuote} color={this.state.backgroundColor}>New Quote</Button> 
+            <Button onClick={() => document.getElementById("tweet-quote").click()} color={this.state.backgroundColor}><a href={curTweetLink} id="tweet-quote"><FontAwesomeIcon icon={faTwitter} /></a></Button>
           </div>
         </div>
 
